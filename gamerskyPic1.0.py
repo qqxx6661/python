@@ -30,8 +30,8 @@ class Spider:
  
     def getPic(self,pageIndex):
         page = self.getPage(pageIndex)
-        #imgre = re.compile(r'src="(http.+?.jpg)">')适合正常抓取
-        imgre = re.compile(r'src="(http.+?.jpg)">')
+        #imgre = re.compile(r'src="(http.+?.jpg)">')#适合正常抓取
+        imgre = re.compile(r'"http.+?\.shtml\?(http.+?\.jpg)">')#高清壁纸支持,偶尔会有bug
         imglist = re.findall(imgre,page)
         print imglist
         imglist_clr = []
