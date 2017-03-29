@@ -55,7 +55,7 @@ def size_of_largest_parallelogram():
                     else:
                         break
 
-    # max_size_final = judge_parallelogram(6, 7, 3) #  test
+    # max_size_final = judge_parallelogram(0, 7, 2) #  test
     return max_size_final
 
 
@@ -63,9 +63,9 @@ def judge_parallelogram(i, j, length):
     max_size_temp = 0
     max_size_temp2 = 0
     exit_flag = 0
-    for l in range(2, length+1):
-        for ll in range(j - l + 1, j - 1 + length):
-            if ll - l + 1 < 0 or i + l - 1 >= 10:  # left
+    for l in range(2, 11):
+        for ll in range(j - l + 1, j - l + 1 + length):
+            if j - l + 1 < 0:  # left
                 max_size_temp2 = 0
                 break
             try:
@@ -74,13 +74,12 @@ def judge_parallelogram(i, j, length):
                     max_size_temp2 = 0
                     exit_flag = 1
                     break
-                if exit_flag == 1:
-                    break
-                max_size_temp2 = l * length  # #########
             except IndexError:
                 exit_flag = 1
-            if exit_flag == 1:
                 break
+            max_size_temp2 = l * length  # #########
+        if exit_flag == 1:
+            break
         # print('temp2: ', max_size_temp2)
         if max_size_temp < max_size_temp2:
             max_size_temp = max_size_temp2
@@ -88,9 +87,9 @@ def judge_parallelogram(i, j, length):
 
     exit_flag = 0
 
-    for l in range(2, length+1):
-        for ll in range(j + l - 1, j + 1 + length):
-            if ll + l - 1 >= 10 or i + l - 1 >= 10:  # right
+    for l in range(2, 11):
+        for ll in range(j + l - 1, j + l - 1 + length):
+            if j + l - 1 >= 10:  # right
                 max_size_temp2 = 0
                 break
             try:
@@ -99,13 +98,12 @@ def judge_parallelogram(i, j, length):
                     max_size_temp2 = 0
                     exit_flag = 1
                     break
-                if exit_flag == 1:
-                    break
-                max_size_temp2 = l * length  # #########
             except IndexError:
                 exit_flag = 1
-            if exit_flag == 1:
                 break
+            max_size_temp2 = l * length  # #########
+        if exit_flag == 1:
+            break
         # print('temp2: ', max_size_temp2)
         if max_size_temp < max_size_temp2:
             max_size_temp = max_size_temp2
@@ -113,7 +111,7 @@ def judge_parallelogram(i, j, length):
 
     exit_flag = 0
 
-    for l in range(2, length + 1):
+    for l in range(2, 11):
         for ll in range(j, j + length):
             try:
                 # print(i + l - 1, ll, '----', grid[i + l - 1][ll])
@@ -121,13 +119,12 @@ def judge_parallelogram(i, j, length):
                     max_size_temp2 = 0
                     exit_flag = 1
                     break
-                if exit_flag == 1:
-                    break
-                max_size_temp2 = l * length  # #########
             except IndexError:
                 exit_flag = 1
-            if exit_flag == 1:
                 break
+            max_size_temp2 = l * length  # #########
+        if exit_flag == 1:
+            break
         # print('temp2: ', max_size_temp2)
         if max_size_temp < max_size_temp2:
             max_size_temp = max_size_temp2
@@ -149,14 +146,6 @@ grid = [[randrange(n) for _ in range(dim)] for _ in range(dim)]
 print('Here is the grid that has been generated:')
 display_grid()
 size = size_of_largest_parallelogram()
-
-grid = [[row[i] for row in grid] for i in range(len(grid[0]))]  # zhuanzhi
-for i in range(10):  # fanzhuan
-    grid[i].reverse()
-display_grid()
-size_temp = size_of_largest_parallelogram()
-if size_temp > size:
-    size = size_temp
 
 if size:
     print('The largest parallelogram with horizontal sides has a size of', size, end = '.\n')
