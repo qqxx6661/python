@@ -59,6 +59,7 @@ def get_distance_west():
         temp_height += 1
     return max_distance_west
 
+
 def get_distance_east():
     temp_height = down[-1] + 1
     max_distance_east = 0
