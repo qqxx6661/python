@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import math
 
+
 def load_matrix():
     matrix = {}
     f = open("train.csv")
@@ -8,13 +9,11 @@ def load_matrix():
 
     for line in f:
         scores = line.split(',')
-    for i in range(len(scores))[1:]:
-        matrix[(scores[0], columns[i])] = scores[i].strip("\n")
+        # print scores
+        for i in range(len(scores))[1:]:
+            matrix[(scores[0], columns[i])] = scores[i].strip("\n")
 
     return matrix
-   
-matrix = load_matrix()  
-print "matrix:", matrix
 
 
 def sim_distance(matrix, row1, row2):
@@ -27,20 +26,12 @@ def sim_distance(matrix, row1, row2):
     return 1 / (1 + math.sqrt(sum_of_distance))
 
 
-print sim_distance(matrix, "Kai Zhou", "Shuai Ge")
-
-
 def top_matches(matrix, row, similarity=sim_distance):
     rows = set(map(lambda l: l[0], matrix.keys()))
     scores = [(similarity(matrix, row, r), r) for r in rows if r != row]
     scores.sort()
     scores.reverse()
     return scores
-
-
-person = "Kai Zhou"
-print "top match for:", person
-print top_matches(matrix, person)
 
 
 def transform(matrix):
@@ -51,14 +42,6 @@ def transform(matrix):
         for column in columns:
             transform_matrix[(column, row)] = matrix[(row, column)]
     return transform_matrix
-
-
-trans_matrix = transform(matrix)
-print "trans:", trans_matrix
-
-film = "Friends"
-print "top match for:", film
-print top_matches(trans_matrix, film)
 
 
 def get_recommendations(matrix, row, similarity=sim_distance):
@@ -87,7 +70,25 @@ def get_recommendations(matrix, row, similarity=sim_distance):
     return scores
 
 
-print get_recommendations(matrix, person)
+if __name__ == '__main__':
 
-# trans_matrix = transform(matrix)
-# print get_recommendations(trans_matrix,  "Friends")
+    matrix1 = load_matrix()
+    print "matrix:", matrix1
+
+    print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
+
+    person = "Kai Zhou"
+    print "top match for:", person
+    print top_matches(matrix1, person)
+
+    trans_matrix = transform(matrix1)
+    print "trans:", trans_matrix
+
+    film = "Friends"
+    print "top match for:", film
+    print top_matches(trans_matrix, film)
+
+    print get_recommendations(matrix1, person)
+
+    # trans_matrix = transform(matrix)
+    # print get_recommendations(trans_matrix,  "Friends")
