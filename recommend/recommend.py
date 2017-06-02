@@ -52,12 +52,15 @@ def get_recommendations(matrix, row, similarity=sim_distance):
     sum_of_column = {}
 
     for r in rows:
-        if r == row: continue
+        if r == row:
+            continue
         sim = similarity(matrix, row, r)
-        if sim <= 0:  continue
+        if sim <= 0:
+            continue
 
         for c in columns:
-            if matrix[(r, c)] == "": continue
+            if matrix[(r, c)] == "":
+                continue
 
             sum_of_column_sim.setdefault(c, 0)
             sum_of_column_sim[c] += sim
@@ -73,21 +76,23 @@ def get_recommendations(matrix, row, similarity=sim_distance):
 if __name__ == '__main__':
 
     matrix1 = load_matrix()
-    print "matrix:", matrix1
+    # print "matrix:", matrix1
 
-    print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
+    # print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
 
-    person = "Kai Zhou"
+    person = "freshman"
     print "top match for:", person
     print top_matches(matrix1, person)
 
     trans_matrix = transform(matrix1)
-    print "trans:", trans_matrix
+    # print "trans:", trans_matrix
 
     film = "Friends"
     print "top match for:", film
     print top_matches(trans_matrix, film)
 
+
+    print "Best for:", person
     print get_recommendations(matrix1, person)
 
     # trans_matrix = transform(matrix)
