@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import math
+import math  # py3
 
 
 def load_matrix():
@@ -76,24 +76,31 @@ def get_recommendations(matrix, row, similarity=sim_distance):
 if __name__ == '__main__':
 
     matrix1 = load_matrix()
-    # print "matrix:", matrix1
+    # print("matrix:", matrix1)
 
     # print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
 
     person = "freshman"
-    print "top match for:", person
-    print top_matches(matrix1, person)
+    print("与" + person + "口味相似的人:")
+    print(top_matches(matrix1, person))
+    similar_list_person = top_matches(matrix1, person)
+    for m in range(5):
+        print(similar_list_person[m][1].strip())
 
     trans_matrix = transform(matrix1)
     # print "trans:", trans_matrix
 
     film = "Friends"
-    print "top match for:", film
-    print top_matches(trans_matrix, film)
+    print("与" + film + "类似的菜:")
+    similar_list_item = top_matches(trans_matrix, film)
+    for m in range(5):
+        print(similar_list_item[m][1].strip())
 
+    print("推荐给" + person + "的菜:")
+    recommend_list = get_recommendations(matrix1, person)
+    for m in range(5):
+        print(recommend_list[m][1].strip())
 
-    print "Best for:", person
-    print get_recommendations(matrix1, person)
 
     # trans_matrix = transform(matrix)
     # print get_recommendations(trans_matrix,  "Friends")
