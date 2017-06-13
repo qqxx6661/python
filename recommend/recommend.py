@@ -4,7 +4,7 @@ import math  # py3
 
 def load_matrix():
     matrix = {}
-    f = open("train.csv")
+    f = open("traintxt.txt")
     columns = f.readline().split(',')
 
     for line in f:
@@ -76,13 +76,14 @@ def get_recommendations(matrix, row, similarity=sim_distance):
 if __name__ == '__main__':
 
     matrix1 = load_matrix()
+    # print(type(matrix1))
     # print("matrix:", matrix1)
-
     # print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
 
-    person = "freshman"
+    person = "小郑"
     print("与" + person + "口味相似的人:")
     print(top_matches(matrix1, person))
+
     similar_list_person = top_matches(matrix1, person)
     for m in range(5):
         print(similar_list_person[m][1].strip())
@@ -90,9 +91,9 @@ if __name__ == '__main__':
     trans_matrix = transform(matrix1)
     # print "trans:", trans_matrix
 
-    film = "Friends"
-    print("与" + film + "类似的菜:")
-    similar_list_item = top_matches(trans_matrix, film)
+    dish = "鱼香肉丝"
+    print("与" + dish + "类似的菜:")
+    similar_list_item = top_matches(trans_matrix, dish)
     for m in range(5):
         print(similar_list_item[m][1].strip())
 
