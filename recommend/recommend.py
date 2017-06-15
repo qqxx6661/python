@@ -80,28 +80,30 @@ if __name__ == '__main__':
     # print("matrix:", matrix1)
     # print "Kai Zhou and Shuai Ge's distance:", sim_distance(matrix1, "Kai Zhou", "Shuai Ge")
 
-    person = "小郑"
+    print("请输入需要查询的人名：")
+    person = raw_input()
     print("与" + person + "口味相似的人:")
-    print(top_matches(matrix1, person))
-
+    # print(top_matches(matrix1, person))
     similar_list_person = top_matches(matrix1, person)
     for m in range(5):
         print(similar_list_person[m][1].strip())
+        print(similar_list_person[m][0])
 
     trans_matrix = transform(matrix1)
     # print "trans:", trans_matrix
-
-    dish = "鱼香肉丝"
-    print("与" + dish + "类似的菜:")
-    similar_list_item = top_matches(trans_matrix, dish)
-    for m in range(5):
-        print(similar_list_item[m][1].strip())
-
+    print("------------------------")
     print("推荐给" + person + "的菜:")
     recommend_list = get_recommendations(matrix1, person)
     for m in range(5):
         print(recommend_list[m][1].strip())
-
+        print(recommend_list[m][0])
+    print("------------------------")
+    print("请输入需要查询的菜名：")
+    dish = raw_input()
+    print("与" + dish + "类似的菜:")
+    similar_list_item = top_matches(trans_matrix, dish)
+    for m in range(5):
+        print(similar_list_item[m][1].strip())
 
     # trans_matrix = transform(matrix)
     # print get_recommendations(trans_matrix,  "Friends")
