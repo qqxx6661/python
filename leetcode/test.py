@@ -1,19 +1,20 @@
-class Solution(object):
-    def FindTwoNodes(self, root):
-        if root:
-            self.FindTwoNodes(root.left)
-            if self.pre and self.pre.val >= root.val:
-                self.n2 = root
-                if not self.n1:
-                    self.n1 = self.pre
-            self.pre = root.val
-            self.FindTwoNodes(root.right)
-
-    def recoverTree(self, root):
-        """
-        :type root: TreeNode
-        :rtype: void Do not return anything, modify root in-place instead.
-        """
-        self.n1, self.n2 = None, None
-        self.pre = None
-        self.FindTwoNodes(root)
+import sys
+from functools import reduce
+def bubble(l):
+    l = list(l)
+    i = 0
+    count = 0
+    while count < len(l):
+        if l[i].isupper():
+            l.append(l.pop(i))
+        else:
+            i += 1
+        count += 1
+    return reduce(lambda x,y: x+y,l)
+if __name__ == '__main__':
+    while True:
+        s = sys.stdin.readline().strip()
+        if not s:
+            break
+        result = bubble(s)
+        print(result)
