@@ -41,12 +41,6 @@
 #     print ' '.join(str(i) for i in nums)
 
 #coding=utf-8
-def digui(cengshu, m_left, num, n):
-    if cengshu < n:
-        for x in range(m_dict[cengshu][1],m_dict[cengshu][0]-1,-1):
-            temp = m_left - x
-            if temp > 0:
-                digui(cengshu+1, n)
 import sys
 if __name__ == "__main__":
     # 读取第一行的n
