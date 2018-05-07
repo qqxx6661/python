@@ -42,13 +42,39 @@
 
 #coding=utf-8
 import sys
+
+
+def sortColors(nums):
+    left = mid = 0
+    right = len(nums) - 1
+    while mid <= right:
+        if nums[mid] == 0:
+            nums[mid], nums[left] = nums[left], nums[mid]
+            left += 1
+            mid += 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:
+            nums[mid], nums[right] = nums[right], nums[mid]
+            right -= 1
 if __name__ == "__main__":
     # 读取第一行的n
-    a = list(sys.stdin.readline().strip().split(' '))
-    n = int(a[0])
-    m = int(a[1])
-    m_dict = {}
-    for i in range(n):
-        m_dict[i] = list(map(int, (sys.stdin.readline().strip().split(' '))))
-    count = digui(0, m, 0, n)
-    print count
+    ary = sys.stdin.readline().strip()
+    ary = list(ary)
+    for i in range(len(ary)):
+        # ary[i] = ary[i][1:-1]
+        if ary[i] == 'R':
+            ary[i] = 0
+        elif ary[i] == 'G':
+            ary[i] = 1
+        else:
+            ary[i] = 2
+    sortColors(ary)
+    for i in range(len(ary)):
+        if ary[i] == 0:
+            ary[i] = 'R'
+        elif ary[i] == 1:
+            ary[i] = 'G'
+        else:
+            ary[i] = 'B'
+    print ''.join(ary)
