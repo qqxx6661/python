@@ -26,9 +26,9 @@ if __name__ == "__main__":
 
 #coding=utf-8
 import sys
-for line in sys.stdin:
-    a = line.split()
-    print(int(a[0]) + int(a[1]))
+if __name__ == "__main__":
+    # 读取第一行的n
+    n = int(sys.stdin.readline().strip())
 
 # py3.5 multiline
 
