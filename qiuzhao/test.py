@@ -6,18 +6,4 @@
 @file: test.py
 @time: 2018/8/10 14:06
 """
-def triangles():
-    N=[1]
-    while True:
-        yield N
-        N.append(0)
-        print(N)
-
-        N=[N[i-1] + N[i] for i in range(len(N))]
-
-n=0
-for t in triangles():
-    print(t)
-    n=n+1
-    if n == 10:
-        break
+import refrom collections import CounterfilePath = './sound.txt'def getCountWords(file):	"统计输入文件内容中单词的个数"	pattern = "[A-Za-z]+|\$?\d+%?$"	with open(file) as f:	 r = re.findall(pattern,f.read())	 print r	 print '*'*20	 return Counter(r).most_common()if __name__ == '__main__':	print getCountWords(filePath)
